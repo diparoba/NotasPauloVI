@@ -1,5 +1,10 @@
 <?php
-$perfil=$_GET['perfil'];
+session_start();
+$perfil=$_SESSION['perfil'];
+if($perfil==null){
+  echo"<script>location.href='../View/login.php';</script>";
+}
+
 ?>
 
 <!doctype html>
@@ -44,7 +49,7 @@ $perfil=$_GET['perfil'];
             Mantenimientos
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Empleados</a></li>
+            <li><a class="dropdown-item" href="../View/empleados.php">Empleados</a></li>
             <li><a class="dropdown-item" href="#">Estudiantes</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Empleados inactivos</a></li>
@@ -55,9 +60,9 @@ $perfil=$_GET['perfil'];
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>-->
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-        <button class="btn btn-danger" type="submit">Salir</button>
+      <form class="d-flex" action="../Controller/salir.php" method="POST">
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">       
+          <input type="submit" class="btn btn-danger" value="Salir">
       </form>
     </div>
   </div>

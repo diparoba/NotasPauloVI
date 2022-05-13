@@ -9,15 +9,6 @@ $pas=$_POST['pass'];
 $sql="SELECT * FROM Empleado where correoInstitucional='$usu' and clave='$pas'";
 $result=Conectar()->query($sql);
 
-/*  una opcion para cerrar el foreach
-foreach($result as $res):
-endforeach;*/
-
-//$perfil=0;
-
-#segunda opcion pero no recomendable poner @
-
-
 foreach($result as $res){
     @$perfil=$res['Rol_Empleado_idRolEmpleado'];
 }
@@ -25,7 +16,6 @@ foreach($result as $res){
 $_SESSION['perfil']=$perfil;
 
 if(@$perfil){
-    #echo "Usuario Correcto";
     switch ($perfil) {
         case 1:
             echo "<script>alert('Administrador');
@@ -40,11 +30,9 @@ if(@$perfil){
             location.href='../View/inicio.php'; </script>";
             break;       
     }
-
 }else{
-echo "Usuario incorrecto";
-//echo "<script>alert('Usuario/Password incorrecto');
-            //location.href='../Vista/login.php'; </script>";
+echo "<script>alert('Usuario/Password incorrecto');
+            location.href='../View/login.php'; </script>";
 }
 
 
